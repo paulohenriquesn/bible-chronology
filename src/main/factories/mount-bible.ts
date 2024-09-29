@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
+
 import { existsSync } from "fs";
 import { LOCALE } from "../../domain/entities/enums/locale";
 import { Book } from "../../domain/entities/book";
