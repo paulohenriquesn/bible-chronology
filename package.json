@@ -1,0 +1,28 @@
+{
+  "name": "bible-chronology",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "prod": "node dist/index.js",
+    "test": "jest"
+  },
+  "repository": "https://github.com/paulohenriquesn/bible-chronology",
+  "author": "Paulo Henrique <contato@paulohenriquesn.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.24.7",
+    "@eslint/js": "^9.11.1",
+    "@jest/globals": "^29.7.0",
+    "@types/jest": "^29.5.13",
+    "@types/node": "^22.7.4",
+    "eslint": "^9.11.1",
+    "globals": "^15.9.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.3.3",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2",
+    "typescript-eslint": "^8.7.0"
+  }
+}
