@@ -1,0 +1,1 @@
+[GET] /{book}/{page}
