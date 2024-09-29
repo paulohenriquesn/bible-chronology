@@ -1,1 +1,1 @@
-[GET] /{book}/{page}
+[GET] /api/{book}/{page}
