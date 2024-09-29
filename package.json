@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "nodemon --watch 'src/*' --exec ts-node src/index.ts -e ts",
-    "prod": "node dist/index.js",
+    "prod": "node dist/src/index.js",
     "test": "jest"
   },
   "repository": "https://github.com/paulohenriquesn/bible-chronology",

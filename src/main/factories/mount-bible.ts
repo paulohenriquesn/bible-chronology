@@ -8,7 +8,7 @@ import { Page } from "../../domain/entities/vo/page";
 
 
 export const mountBibleFromJSON = (locale: LOCALE, file: string): Book[] => {
-    const bibleFile = `${__dirname}\\..\\..\\main/bibles/${locale}/${file}.json`
+    const bibleFile = `${__dirname}\\..\\..\\..\\..\\public/bibles/${locale}/${file}.json`
     console.log(`Reading bible from ${bibleFile} path`)
     
     if (!existsSync(bibleFile)) {

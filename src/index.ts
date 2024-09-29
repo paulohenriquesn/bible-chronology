@@ -14,9 +14,10 @@ const books = makeAsChronology_PORTUGUESE(
 
 server.use(cors());
 server.use(express.json());
+server.use('/', express.static('public'))
 
 server.get(
-  "/:book/:page",
+  "/api/:book/:page",
   (req: express.Request | any, res: express.Response | any) => {
     const { book: bookParam, page: pageParam} = req.params;
 

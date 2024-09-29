@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Página de Leitura Acessível</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script type="text/javascript">
+      const urlSearchParams = new URLSearchParams(window.location.search);
+
+      let bookId = urlSearchParams.get("book") ?? 1;
+      let pageId = urlSearchParams.get("page") ?? 1;
+
+      function getPage() {
+        if (pageId !== "last") {
+          return fetch(`api/${bookId}/${pageId}`)
+            .then((response) => response.json())
+            .then((data) => {
+              loadPage(data);
+              return data;
+            });
+        }else {
+        return fetch(`api/${bookId}/1`)
+          .then((response) => response.json())
+          .then((data) => {
+            pageId = data.totalPages
+            location.href = `${location.origin}?book=${Number(bookId)}&page=${pageId}`
+            return data;
+          });
+        }
+      }
+
+      function loadPage(page) {
+        console.log(pageId)
+        pageData = page;
+        $("#book-title").text(`${page.bookName} ${page.chapter}`);
+
+        for (const [index, verse] of page.verses.entries()) {
+          const verseElement = $(
+            `<p class="verse"><span class="verse-number">${index + 1}</span> ${verse}</p>`
+          );
+          $("#text").append(verseElement);
+        }
+      }
+
+      function next() {
+        if (Number(pageId) < pageData.totalPages) {
+          location.href = `${location.origin}?book=${bookId}&page=${Number(pageId) + 1}`;
+        } else {
+          location.href = `${location.origin}?book=${Number(bookId) + 1}&page=1`;
+        }
+      }
+
+      function previous() {
+        if (Number(pageId) == 1 && Number(bookId) > 1) {
+          location.href = `${location.origin}?book=${Number(bookId) - 1}&page=last`;
+        }
+
+        if(Number(pageId) > 1) {
+            location.href = `${location.origin}?book=${Number(bookId)}&page=${Number(pageId) - 1}`;
+        }
+      }
+      getPage();
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1 id="book-title">Genesis</h1>
+      </header>
+      <main>
+        <section id="text"></section>
+      </main>
+      <footer>
+        <center>
+          <a href="#" onclick="previous()" class="button"><</a>
+          <a href="#" onclick="next()" class="button">></a>
+        </center>
+      </footer>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
