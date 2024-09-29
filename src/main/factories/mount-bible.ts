@@ -5,10 +5,11 @@ import { LOCALE } from "../../domain/entities/enums/locale";
 import { Book } from "../../domain/entities/book";
 import { Chapter } from "../../domain/entities/vo/chapter";
 import { Page } from "../../domain/entities/vo/page";
+import path from 'path'
 
 
 export const mountBibleFromJSON = (locale: LOCALE, file: string): Book[] => {
-    const bibleFile = `${__dirname}\\..\\..\\..\\..\\public/bibles/${locale}/${file}.json`
+    const bibleFile = path.resolve(`${__dirname}`, '..', '..', '..', 'public', 'bibles', locale, `${file}.json`)
     console.log(`Reading bible from ${bibleFile} path`)
     
     if (!existsSync(bibleFile)) {
